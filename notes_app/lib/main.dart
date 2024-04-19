@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:notes_app/views/add_new_note.dart';
 import 'package:notes_app/views/edit_notes.dart';
 import 'package:notes_app/views/home_page.dart';
+import 'package:notes_app/views/search_screen.dart';
 import 'package:notes_app/views/sign_up.dart';
 import 'package:notes_app/views/view_notes_page.dart';
 
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         "/signup": (context) => const SignUpApp(),
         "/editnote": (context) => const ViewNotesPage(),
         "/addNewNote": (context) => const AddNewNotePage(),
+        "/searchScrenn": (context) => const SearchScreen(),
       },
     );
   }

@@ -8,86 +8,150 @@ import 'package:notes_app/constants/colors.dart';
 import 'package:notes_app/views/add_new_note.dart';
 import 'package:notes_app/views/edit_notes.dart';
 import 'package:notes_app/views/empty_notes.dart';
+import 'package:notes_app/views/search_screen.dart';
 import 'package:notes_app/views/view_notes_page.dart';
 import 'package:notes_app/widgets/alert_dialog.dart';
 import "dart:developer" as devtools;
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<bool> _isFavourite = List.generate(10, (index) => false);
+  final _searchController = TextEditingController();
+  bool _isSearching = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Notes App",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: _isSearching
+            ? TextField(
+                controller: _searchController,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+                decoration: const InputDecoration(
+                  hintText: "Search a note",
+                ),
+              )
+            : const Text(
+                "Notes App",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+        leading: _isSearching
+            ? IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  setState(
+                    () {
+                      _isSearching = false;
+                      _searchController.clear();
+                    },
+                  );
+                },
+              )
+            : IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: () {
+                  devtools.log("Navigation button cicked");
+                },
+              ),
         backgroundColor: const Color.fromARGB(255, 216, 195, 195),
         iconTheme: const IconThemeData(
           color: Colors.black,
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              // To do implement the search screen
-              // showSearch(context: context, delegate: Search());
-            },
-            icon: const Icon(Icons.search),
-          ),
-          PopupMenuButton(
-            onSelected: (val) {
-              if (val == 0) {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: const Text(
-                          "Are you sure you want to delete all notes?"),
-                      content: const Text(
-                          "This will delete all notes permanently. You cannot undo this action."),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            // controller.deleteAllNotes();
-                            Get.back();
-                          },
-                          child: Text("Confirm"),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          child: Text("Cancel"),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              }
-            },
-            itemBuilder: (context) => [
-              const PopupMenuItem(
-                value: 0,
-                child: Text(
-                  "Delete All Notes",
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
+        actions: _isSearching
+            ? [
+                IconButton(
+                  icon: const Icon(
+                    Icons.clear,
                   ),
+                  onPressed: () {
+                    setState(() {
+                      _isSearching = false;
+                      _searchController.clear();
+                    });
+                  },
+                )
+              ]
+            : [
+                IconButton(
+                  onPressed: () {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const SearchScreen(),
+                    //   ),
+                    // );
+                    setState(() {
+                      _isSearching = true;
+                    });
+                    devtools.log("Search button clicked");
+                    // To do implement the search screen
+                    // showSearch(context: context, delegate: Search());
+                  },
+                  icon: const Icon(Icons.search),
                 ),
-              )
-            ],
-          )
-        ],
+                PopupMenuButton(
+                  onSelected: (val) {
+                    if (val == 0) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: const Text(
+                                "Are you sure you want to delete all notes?"),
+                            content: const Text(
+                                "This will delete all notes permanently. You cannot undo this action."),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  // controller.deleteAllNotes();
+                                  Get.back();
+                                },
+                                child: const Text("Confirm"),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                child: const Text("Cancel"),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  },
+                  itemBuilder: (context) => [
+                    const PopupMenuItem(
+                      value: 0,
+                      child: Text(
+                        "Delete All Notes",
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
         systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: viewNotes(),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
+          // To do fix the navigation according to the requirement here!!
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -199,12 +263,22 @@ class HomePage extends StatelessWidget {
                           width: 20,
                         ),
                         InkWell(
-                            onTap: () {
-                              devtools.log("Add to favourites");
-                            },
-                            child: const Icon(
-                              Icons.favorite_border,
-                            ))
+                          onTap: () {
+                            devtools.log("Add to favourites");
+                            setState(
+                              () {
+                                _isFavourite[index] = !_isFavourite[index];
+                              },
+                            );
+                          },
+                          child: Icon(
+                              _isFavourite[index]
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: _isFavourite[index]
+                                  ? const Color.fromARGB(255, 227, 154, 154)
+                                  : null),
+                        )
                       ],
                     )),
               ),
