@@ -2,19 +2,17 @@
 
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const SignUpApp());
-}
-
 class SignUpApp extends StatelessWidget {
   const SignUpApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(routes: {
-      '/': (context) => const SignUpScreen(),
-    });
+    return MaterialApp(
+      routes: {
+        '/': (context) => const SignUpScreen(),
+      },
+    );
   }
 }
 
