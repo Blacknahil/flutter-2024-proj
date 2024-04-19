@@ -5,11 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/constants/colors.dart';
-import 'package:notes_app/views/add_new_note.dart';
-import 'package:notes_app/views/edit_notes.dart';
-import 'package:notes_app/views/empty_notes.dart';
-import 'package:notes_app/views/search_screen.dart';
-import 'package:notes_app/views/view_notes_page.dart';
+import 'package:notes_app/screens/add_new_note.dart';
+import 'package:notes_app/screens/edit_notes.dart';
+import 'package:notes_app/screens/empty_notes.dart';
+import 'package:notes_app/screens/search_screen.dart';
+import 'package:notes_app/screens/view_specific_note_page.dart';
 import 'package:notes_app/widgets/alert_dialog.dart';
 import "dart:developer" as devtools;
 
@@ -117,13 +117,13 @@ class _HomePageState extends State<HomePage> {
                               TextButton(
                                 onPressed: () {
                                   // controller.deleteAllNotes();
-                                  Get.back();
+                                  Navigator.pop(context);
                                 },
                                 child: const Text("Confirm"),
                               ),
                               TextButton(
                                 onPressed: () {
-                                  Get.back();
+                                  Navigator.pop(context);
                                 },
                                 child: const Text("Cancel"),
                               ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:notes_app/views/add_new_note.dart';
-import 'package:notes_app/views/edit_notes.dart';
-import 'package:notes_app/views/home_page.dart';
-import 'package:notes_app/views/search_screen.dart';
-import 'package:notes_app/views/sign_up.dart';
-import 'package:notes_app/views/view_notes_page.dart';
+import 'package:notes_app/screens/add_new_note.dart';
+import 'package:notes_app/screens/edit_notes.dart';
+import 'package:notes_app/screens/home_page.dart';
+import 'package:notes_app/screens/search_screen.dart';
+import 'package:notes_app/screens/sign_up.dart';
+import 'package:notes_app/screens/view_specific_note_page.dart';
 
 void main() {
   runApp(const MyApp());

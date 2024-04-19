@@ -87,6 +87,7 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
+          Navigator.pop(context);
           // update note and update the time stamp
           devtools.log("edit note and save the note button clicked");
         },
