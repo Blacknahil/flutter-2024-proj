@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import "dart:developer" as devtools;
 
+import 'package:notes_app/screens/log_in.dart';
+
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
@@ -34,7 +36,13 @@ class WelcomeScreen extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              devtools.log("Arrow button clicked continue to the next screnn");
+              devtools.log("Arrow button clicked continue to the next screen");
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LogInScreen(),
+                ),
+              );
             },
             child: Padding(
               padding: const EdgeInsets.only(
