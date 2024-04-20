@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/screens/home_page.dart';
-import 'package:notes_app/screens/log_in.dart';
-import 'package:notes_app/widgets/black_button.dart';
+import 'package:notes_app/presentations/screens/home_page.dart';
+import 'package:notes_app/presentations/screens/log_in.dart';
+import 'package:notes_app/presentations/widgets/black_button.dart';
 
 class SignUpApp extends StatefulWidget {
   const SignUpApp({super.key});

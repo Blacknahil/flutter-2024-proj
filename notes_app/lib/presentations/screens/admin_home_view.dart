@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: NotesAdminPage(),
-  ));
-}
-
 class NotesAdminPage extends StatefulWidget {
   @override
   _NotesAdminPageState createState() => _NotesAdminPageState();

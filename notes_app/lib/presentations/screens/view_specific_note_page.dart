@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:notes_app/screens/edit_notes.dart';
+import 'package:notes_app/presentations/screens/edit_notes.dart';
 
 class ViewNotesPage extends StatelessWidget {
   const ViewNotesPage({Key? key}) : super(key: key);

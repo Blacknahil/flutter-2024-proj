@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/screens/home_page.dart';
-import 'package:notes_app/screens/sign_up.dart';
-import 'package:notes_app/widgets/black_button.dart';
+import 'package:notes_app/presentations/screens/home_page.dart';
+import 'package:notes_app/presentations/screens/sign_up.dart';
+import 'package:notes_app/presentations/widgets/black_button.dart';
 import 'dart:developer' as devtools;
 
-import 'package:notes_app/widgets/login_button.dart';
+import 'package:notes_app/presentations/widgets/login_button.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
