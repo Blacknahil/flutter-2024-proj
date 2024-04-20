@@ -154,7 +154,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              SignUpScreen(), // Replace with your sign up page
+                              SignUpApp(), // Replace with your sign up page
                         ),
                       );
                       devtools.log("Go to sign up screen clicked");
