@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/screens/home_page.dart';
 
 class BlackButton extends StatelessWidget {
   final String text;
@@ -8,7 +7,7 @@ class BlackButton extends StatelessWidget {
   const BlackButton({
     Key? key,
     required this.text,
-    this.callback,
+    required this.callback,
   }) : super(key: key);
 
   @override
@@ -25,7 +24,7 @@ class BlackButton extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => HomePage(),
+                builder: (context) => callback,
               ),
             );
           },

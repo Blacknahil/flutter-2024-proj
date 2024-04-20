@@ -36,13 +36,8 @@ class WelcomeScreen extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              devtools.log("Arrow button clicked continue to the next screen");
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => LogInScreen(),
-                ),
-              );
+              devtools.log(
+                  " INk well : Arrow button clicked continue to the next screen");
             },
             child: Padding(
               padding: const EdgeInsets.only(
@@ -66,7 +61,16 @@ class WelcomeScreen extends StatelessWidget {
                   //       child: Text("Sign up")),
                   //       ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LogInScreen(),
+                        ),
+                      );
+                      devtools.log(
+                          "Arrow button clicked continue to the next screen");
+                    },
                     icon: Icon(Icons.arrow_forward_rounded,
                         color: Color.fromARGB(255, 44, 62, 77)),
                     iconSize: 30,

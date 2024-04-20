@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/screens/home_page.dart';
+import 'package:notes_app/screens/sign_up.dart';
 import 'package:notes_app/widgets/black_button.dart';
+import 'dart:developer' as devtools;
+
+import 'package:notes_app/widgets/login_button.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -47,7 +52,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(
-                    height: 100,
+                    height: 40,
                   ),
                   const Text(
                     "Welcome!",
@@ -122,8 +127,76 @@ class _LogInScreenState extends State<LogInScreen> {
                         return null;
                       },
                     ),
-                    // BlackButton(text: "Login")
                   ),
+                  BlackButton(
+                    text: "Log in",
+                    callback: HomePage(),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 15),
+                    child: Text(
+                      "OR",
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  LogInButton(
+                    imageUrl: 'assets/images/google.png',
+                    signInMethod: "Google",
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                    },
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              SignUpScreen(), // Replace with your sign up page
+                        ),
+                      );
+                      devtools.log("Go to sign up screen clicked");
+                    },
+                    child: RichText(
+                      text: const TextSpan(
+                          style: TextStyle(color: Colors.black, fontSize: 16),
+                          children: <TextSpan>[
+                            TextSpan(text: "Don't have an account? "),
+                            TextSpan(
+                                text: "Sign up for free",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue))
+                          ]),
+                    ),
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                HomePage(), // Replace with your sign up page
+                          ),
+                        );
+                        devtools.log("Go to Home page screen clicked");
+                      },
+                      child: RichText(
+                        text: const TextSpan(
+                            style: TextStyle(color: Colors.black, fontSize: 16),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text:
+                                      "Don't Want to sign up? Continue to use"),
+                              TextSpan(
+                                  text: " Your Notes App.",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromARGB(255, 73, 147, 208)))
+                            ]),
+                      ))
                 ],
               )),
         ),

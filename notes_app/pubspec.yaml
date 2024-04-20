@@ -64,6 +64,7 @@ flutter:
     - assets/images/no_notes.png
     - assets/images/no_notes1.png
     - assets/images/Welcome.png
+    - assets/images/google.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
