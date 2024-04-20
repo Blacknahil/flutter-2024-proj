@@ -6,6 +6,7 @@ import 'package:notes_app/screens/home_page.dart';
 import 'package:notes_app/screens/search_screen.dart';
 import 'package:notes_app/screens/sign_up.dart';
 import 'package:notes_app/screens/view_specific_note_page.dart';
+import 'package:notes_app/screens/welcome_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,11 +30,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
       routes: {
-        "/": (context) => const HomePage(),
+        "/homescreen": (context) => const HomePage(),
         "/signup": (context) => const SignUpApp(),
         "/editnote": (context) => const ViewNotesPage(),
         "/addNewNote": (context) => const AddNewNotePage(),
-        "/searchScrenn": (context) => const SearchScreen(),
+        "/searchscrenn": (context) => const SearchScreen(),
+        "/": (context) => const WelcomeScreen(),
       },
     );
   }

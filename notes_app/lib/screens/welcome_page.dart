@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import "dart:developer" as devtools;
 
-class welcome extends StatelessWidget {
-  const welcome({super.key});
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,31 +14,57 @@ class welcome extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 30),
             child: Image(
-              image: AssetImage("assets/Welcome.png"),
+              image: AssetImage("assets/images/Welcome.png"),
               width: 300,
               height: 300,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text("Capture Your Moments Pen Your Journey.",
+            padding: const EdgeInsets.only(
+              top: 10,
+              bottom: 8.0,
+              left: 10,
+              right: 10,
+            ),
+            child: Text("Capture Your Moments. \n Pen Your Journey.",
                 style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize: 20,
                 )),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 50),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(onPressed: () {}, child: Text("continue")),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child:
-                      ElevatedButton(onPressed: () {}, child: Text("Sign up")),
-                ),
-              ],
+          InkWell(
+            onTap: () {
+              devtools.log("Arrow button clicked continue to the next screnn");
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 5,
+                right: 20,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  // ElevatedButton(
+                  //     onPressed: () {
+                  //       devtools.log("Continue button clicked");
+                  //     },
+                  //     child: Text("continue")),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 20),
+                  //   child: ElevatedButton(
+                  //       onPressed: () {
+                  //         devtools.log("Sign up button clicked");
+                  //       },
+                  //       child: Text("Sign up")),
+                  //       ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.arrow_forward_rounded,
+                        color: Color.fromARGB(255, 44, 62, 77)),
+                    iconSize: 30,
+                  )
+                ],
+              ),
             ),
           )
         ],
