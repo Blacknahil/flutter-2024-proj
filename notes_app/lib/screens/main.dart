@@ -42,7 +42,7 @@ class _NotesAdminPageState extends State<NotesAdminPage> {
                       child: ListTile(
                         title: Center(child: Text(notes[index])),
                         trailing: Wrap(
-                          spacing: 12,
+                          spacing: 14,
                           children: <Widget>[
                             IconButton(
                               icon: Icon(Icons.edit, color: Colors.blue),
