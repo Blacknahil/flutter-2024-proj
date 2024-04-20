@@ -219,11 +219,11 @@ class _HomePageState extends State<HomePage> {
                       confirmFunction: () {
                         //action to delete the note upon confimration.
                         // Navigation handler
-                        Get.back();
+                        Navigator.pop(context);
                       },
                       declineFunction: () {
                         //Edit the navigation as per the requirement.
-                        Get.back();
+                        Navigator.pop(context);
                       },
                     );
                   },
@@ -266,7 +266,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         const SizedBox(
-                          width: 20,
+                          width: 10,
                         ),
                         InkWell(
                           onTap: () {
@@ -284,6 +284,31 @@ class _HomePageState extends State<HomePage> {
                               color: _isFavourite[index]
                                   ? const Color.fromARGB(255, 227, 154, 154)
                                   : null),
+                        ),
+                        SizedBox(width: 4),
+                        IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialogWidget(
+                                  headingText: 'Delete Note',
+                                  contentText:
+                                      'Are you sure you want to delete this Note?',
+                                  confirmFunction: () {
+                                    // Add your delete logic here
+                                    Navigator.of(context)
+                                        .pop(); // Close the dialog
+                                  },
+                                  declineFunction: () {
+                                    Navigator.of(context)
+                                        .pop(); // Close the dialog
+                                  },
+                                );
+                              },
+                            );
+                          },
                         )
                       ],
                     )),
