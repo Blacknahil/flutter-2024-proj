@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -8,8 +9,10 @@ import 'package:notes_app/constants/colors.dart';
 import 'package:notes_app/screens/add_new_note.dart';
 import 'package:notes_app/screens/edit_notes.dart';
 import 'package:notes_app/screens/empty_notes.dart';
+import 'package:notes_app/screens/navigation.dart';
 import 'package:notes_app/screens/search_screen.dart';
 import 'package:notes_app/screens/view_specific_note_page.dart';
+import 'package:notes_app/screens/welcome_page.dart';
 import 'package:notes_app/widgets/alert_dialog.dart';
 import "dart:developer" as devtools;
 
@@ -60,12 +63,15 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
               )
-            : IconButton(
-                icon: Icon(Icons.menu),
-                onPressed: () {
-                  devtools.log("Navigation button cicked");
-                },
-              ),
+            : Builder(builder: (context) {
+                return IconButton(
+                  icon: Icon(Icons.menu),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                    devtools.log("Navigation button cicked");
+                  },
+                );
+              }),
         backgroundColor: const Color.fromARGB(255, 216, 195, 195),
         iconTheme: const IconThemeData(
           color: Colors.black,
@@ -148,6 +154,7 @@ class _HomePageState extends State<HomePage> {
               ],
         systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
+      drawer: AppDrawer(),
       body: viewNotes(),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {

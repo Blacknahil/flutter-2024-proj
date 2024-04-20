@@ -218,12 +218,16 @@ class _SignUpAppState extends State<SignUpApp> {
                     ),
                   ),
                 ),
-                BlackButton(text: 'Sign up', callback: HomePage()),
+                BlackButton(
+                  text: 'Sign up',
+                  callback: HomePage(),
+                ),
                 const SizedBox(
                   height: 16,
                 ),
                 TextButton(
                   onPressed: () {
+                    dispose();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
