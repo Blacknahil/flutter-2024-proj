@@ -1,31 +1,48 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req, UseGuards } from '@nestjs/common';
 import { FoldersService } from './folders.service';
 import { CreateFolderDto } from './dto/create-folder.dto';
 import { UpdateFolderDto } from './dto/update-folder.dto';
 import { Types } from 'mongoose';
+import { JwtAuthGuard } from 'src/auth/auth.guard';
 
 @Controller('folders')
 export class FoldersController {
   constructor(private readonly foldersService: FoldersService) {}
 
+
+  @UseGuards(JwtAuthGuard)
   @Post(':userId')
-  create(@Body() createFolderDto: CreateFolderDto,@Param('userId') userId:Types.ObjectId) {
-    return this.foldersService.create(createFolderDto,userId);
+  async create(@Body() createFolderDto: CreateFolderDto,@Param('userId') userId:String){
+    console.log("folder is being created");
+    const res=await this.foldersService.create(createFolderDto,userId.toString());
+    console.log(res)
+    return res
   }
 
-  // @Get()
-  // findAll() {
-  //   return this.foldersService.findAll();
-  // }
+  @UseGuards(JwtAuthGuard)
+  @Get('all/:userId')
+  async findAll(@Param('userId') userId:String) {
+    return await this.foldersService. findAllFoldersByUserId(userId);
+  }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.foldersService.findOne(+id);
-  // }
+  @UseGuards(JwtAuthGuard)
+  @Get('one/:folderId')
+  async findOne(@Param('folderId') folderId: string) {
+    const res=await this.foldersService.findFolderById(folderId);
+    return res;
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('notes/:folderId')
+  async findFolderNotes(@Param('folderId') folderId: string) {
+    const res=await this.foldersService.findNotesByFolderId(folderId);
+    console.log("One folder is {res}")
+    return res;
+  }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFolderDto: UpdateFolderDto) {
-    return this.foldersService.update(id, updateFolderDto);
+  async update(@Param('id') id: string, @Body() updateFolderDto: UpdateFolderDto) {
+    return await this.foldersService.update(id, updateFolderDto);
   }
 
   @Delete(':folderId')

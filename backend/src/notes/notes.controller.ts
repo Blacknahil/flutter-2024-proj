@@ -21,16 +21,18 @@ export class NotesController {
 
   //create notes by users
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createNoteDto: CreateNotesDto, @Req() req: any) {
     return this.notesService.create(createNoteDto, req.headers);
   }
   //Delete notes By Id
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string, @Req() req: any) {
     return this.notesService.remove(id, req.headers['user-id']);
+
+    
   }
 
   //findnotes get

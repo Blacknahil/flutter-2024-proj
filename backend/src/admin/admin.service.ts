@@ -14,21 +14,27 @@ export class AdminService {
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
   ) {}
 
-  async getAllUsersWithNotes(): Promise<{ [userId: string]: Note[] }> {
+  async getAllUsersWithNotes(): Promise<{ [userId: string]: { id:String,name: string, email: string, role: string, banned: boolean, foldersArray: any[] } }> {
     const allUsers = await this.usersService.findAll();
-    // console.log(allUsers)
-    const result: { [userId: string]: Note[] } = {};
+    const result: { [userId: string]: {id:string, name: string, email: string, role: string, banned: boolean, foldersArray: any[],} } = {};
 
     for (const user of allUsers) {
-      const userId = user._id.toString();
-      const userNotes = await this.noteModel.find({ userId }).exec();
-      // console.log(userNotes)
-      result[userId] = userNotes;
+        const userId = user._id.toString();
+        result[userId] = {
+            id:userId,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            banned: user.banned,
+            foldersArray: user.foldersArray,
+        };
     }
-    // console.log(result)
-    return result;
-  }
 
+    return result;
+}
+
+
+  //
   async deleteUserAndNotes(userId: string): Promise<void> {
     const user = await this.userModel.findById(userId);
     if (!user) {

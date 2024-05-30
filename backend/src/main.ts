@@ -10,10 +10,12 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     cors: true,
   });
-  // app.enableCors(options:{
-  //   origin:'http://localhost:5001',
-  //   Credential:true
-  // })
+  app.enableCors({
+    // origin: '*', // replace with your app's origin
+    // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    // allowedHeaders: 'Content-Type, Accept',
+    // credentials: true,
+  });
   await app.use(cookieParser());
   const userService = app.get(UsersService);
   const admins = await userService.findAdminUsers();

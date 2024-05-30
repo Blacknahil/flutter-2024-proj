@@ -1,4 +1,4 @@
-name: bloc
+name: bloc_2
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -20,6 +20,7 @@ version: 1.0.0+1
 
 environment:
   sdk: '>=3.3.2 <4.0.0'
+  flutter: ">=2.2.2 <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -35,7 +36,24 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  get: ^4.6.6
+  flutter_bloc: ^8.1.5
+  go_router: ^14.1.4
+  freezed_annotation: ^2.4.1
+  dartz: ^0.10.1
+  equatable: ^2.0.5
+  bloc: ^8.1.4
+  build_runner: ^2.4.9
+  freezed: ^2.5.2
+  google_sign_in: ^6.2.1
+  http: ^1.2.1
   injectable: ^2.4.2
+  injectable_generator: ^2.6.1
+  get_it: ^7.7.0
+  another_flushbar: ^1.12.30
+  uuid: ^4.4.0
+  shared_preferences: ^2.2.3
+  tuple: ^2.0.2
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +76,12 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/images/no_notes.png
+    - assets/images/no_notes1.png
+    - assets/images/Welcome.png
+    - assets/images/google.png
+    - assets/images/avator.jpeg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

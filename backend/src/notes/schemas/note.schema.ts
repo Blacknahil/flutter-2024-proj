@@ -27,7 +27,7 @@ export class Note {
   // updatedAt: Date;
 
   @Prop()
-  notesid: Types.ObjectId;
+  noteId: Types.ObjectId;
 
 }
 export type NoteDocument = Note & Document;

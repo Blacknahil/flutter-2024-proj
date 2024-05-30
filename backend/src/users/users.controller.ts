@@ -52,11 +52,12 @@ export class UsersController {
   }
 
   @Post('login')
-  @UsePipes(new ValidationPipe({ transform: true }))
+  // @UsePipes(new ValidationPipe({ transform: true }))
   async login(
     @Body() loginUserDto: LoginUserDto,
     @Res({ passthrough: true }) response: Response,
   ) {
+    console.log('inside login');
     const { access_token, user } = await this.authService.login(
       loginUserDto.email,
       loginUserDto.password,
@@ -66,17 +67,18 @@ export class UsersController {
         throw new BadRequestException('Invalid credentials');
       }
       response.cookie('jwt', access_token, { httpOnly: true });
-      // console.log(user,access_token);
-      return { user, access_token };
+      response.header('Content-Type', 'application/json');
+      return { "userId":user.id, "access_token":access_token }
     } catch (error) {
       console.log(error);
       throw error;
     }
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get('profile/:id')
   async profile(@Param('id') id: string): Promise<User> {
+    console.log("inside profile fetching page")
     return this.usersService.profile(id);
   }
 
@@ -86,17 +88,21 @@ export class UsersController {
     @Param('id') id: string,
     @Body() updateUserDto: UpdateUsersDto,
   ): Promise<any> {
-    return this.usersService.updateProfile(id, updateUserDto);
+    console.log("trying to update profile")
+    console.log(updateUserDto)
+    const res=await this.usersService.updateProfile(id, updateUserDto);
+    console.log(res)
+    return res
   }
 
-  // @Roles(Role.Admin)
+
   //now a user can delte its account or admin can delete the account of others
   
-  // @UseGuards(JwtAuthGuard, RolesGuard)
+  @UseGuards(JwtAuthGuard)
   @Delete('delete/:id')
   async deleteAccount(@Param('id') id: string,@Req() req): Promise<User> {
 
-    return this.usersService.deleteAccount(id,req.user);
+    return this.usersService.deleteAccount(id,req.body.role);
   }
 
   //Admin route to get all users

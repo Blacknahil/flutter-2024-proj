@@ -47,8 +47,7 @@ export class UsersService {
     console.log(user)
 
     if (!user) {
-      console.log('User Not found WE cant get the user');
-      throw new NotFoundException('User Not found WE cant get the user');
+      throw new NotFoundException('User not found.');
     }
     return user;
   }
@@ -58,7 +57,7 @@ export class UsersService {
   async updateProfile( userId: string,updateUserDto: UpdateUsersDto): Promise<string> {
     const user= await this.userModel.findById(userId);
     if (!user){
-      throw new NotFoundException("User not found")
+      throw new NotFoundException("User not found.")
     }
 
     let updatedFields = '';
@@ -71,7 +70,7 @@ export class UsersService {
       if (updateUserDto.newPassword!==updateUserDto.confirmPassword){
         throw new BadRequestException("New password and confirm password dont match")
       }
-      const isOldPasswordCorrect= await bcrypt.compare(updateUserDto.oldPassword,updateUserDto.newPassword)
+      const isOldPasswordCorrect= await bcrypt.compare(updateUserDto.oldPassword,user.password)
 
       if (!isOldPasswordCorrect){
         throw new BadRequestException("Old password is incorrct")
@@ -83,7 +82,7 @@ export class UsersService {
 
     await user.save()
     if (updatedFields==""){
-      return "No updates were made as no valid fields were provided"
+      throw new BadRequestException("No valid updates were made.")
     }
     return updatedFields;
     
@@ -91,7 +90,7 @@ export class UsersService {
 
 
   
-  async deleteAccount(userId: string,user:User): Promise<User> {
+  async deleteAccount(userId: string,role): Promise<User> {
 
     const userToDelete = await this.userModel
       .findById(userId);
@@ -99,7 +98,8 @@ export class UsersService {
     if (!userToDelete) {
       throw new NotFoundException('user not found');
     }
-    if (user._id.toString() !=userId && user.role!=Role.Admin){
+    if (userToDelete.id !=userId && Role[role]!=Role.Admin){
+      console.log(role);
       throw new ForbiddenException("You dont have access to delete the user")
     }
     await this.userModel.deleteOne({_id:userId})

@@ -18,11 +18,11 @@ export class FoldersService {
 ){}
 
 
-  async create(createFolderDto: CreateFolderDto,userId:Types.ObjectId){
+  async create(createFolderDto: CreateFolderDto,userId:string){
     const { title } = createFolderDto;
     const createdFolder=new this.folderModel({title:title,userId:userId})
 
-    await this.usersService.updateFoldersArray(userId.toString(),createdFolder._id.toString())
+    await this.usersService.updateFoldersArray(userId,createdFolder._id.toString())
     await createdFolder.save();
     return createdFolder;
     console.log("Folder created successfully")
@@ -31,10 +31,25 @@ export class FoldersService {
   }
   
 
-  // findAllFolderName(:userId) {
-  //   const 
-    
-  // }
+  async findAllFoldersByUserId(userId: String) {
+    const user = await this.usersService.findOne(userId as string);
+    const foldersIds = user.foldersArray;
+  
+    const folders = await Promise.all(
+      foldersIds.map(async (folderId) => {
+        const folder = await this.findFolderById(folderId);
+        return folder;
+      })
+    );
+  
+    return folders;
+}
+
+  async findFolderById(folderId:String ){
+    const folder= await this.folderModel.findById(folderId)
+    return {"title": folder.title, "id":folder.id,"noteIds":folder.noteIds}
+
+  }
 
   async findNotesByFolderId(folderId: string) {
     const notes = await this.notesService.getNotesByfolderId(folderId)

@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "bloc",
+            "cwd": "bloc",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "bloc (profile mode)",
+            "cwd": "bloc",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "bloc (release mode)",
+            "cwd": "bloc",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "notes_app",
+            "cwd": "riverpod/notes_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "notes_app (profile mode)",
+            "cwd": "riverpod/notes_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "notes_app (release mode)",
+            "cwd": "riverpod/notes_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

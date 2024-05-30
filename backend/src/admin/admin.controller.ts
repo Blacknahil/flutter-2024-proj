@@ -41,14 +41,14 @@ export class AdminController {
     return this.adminService.deleteUserAndNotes(id);
   }
 
-  // @Roles(Role.Admin)
-  // @UseGuards(JwtAuthGuard,RolesGuard)
+  @Roles(Role.Admin)
+  @UseGuards(JwtAuthGuard,RolesGuard)
   @Patch('user/ban/:id')
   banUser(@Param('id') id:string){
     return this.adminService.banUser(id)
   }
-  // @Roles(Role.Admin)
-  // @UseGuards(JwtAuthGuard,RolesGuard)
+  @Roles(Role.Admin)
+  @UseGuards(JwtAuthGuard,RolesGuard)
   @Patch('user/unban/:id')
   unBanUser(@Param('id') id:string){
     return this.adminService.unBanUser(id)

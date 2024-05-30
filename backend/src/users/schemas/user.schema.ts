@@ -31,7 +31,7 @@ export class User {
   _id: Types.ObjectId;
 
   @Prop()
-  foldersArray:Array<string>
+  foldersArray:Array<String>
 }
 
 export type UserDocument = User & Document;

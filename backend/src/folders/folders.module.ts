@@ -8,6 +8,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersService } from 'src/users/users.service';
 import { NotesService } from 'src/notes/notes.service';
 import { NotesModule } from 'src/notes/notes.module';
+import { AuthService } from 'src/auth/auth.service';
 
 @Module({
   imports:[
@@ -18,7 +19,7 @@ import { NotesModule } from 'src/notes/notes.module';
   ],
 
   controllers: [FoldersController],
-  providers: [UsersService,FoldersService],
+  providers: [UsersService,FoldersService, AuthService],
   exports:[FoldersService]
 })
 export class FoldersModule {}
