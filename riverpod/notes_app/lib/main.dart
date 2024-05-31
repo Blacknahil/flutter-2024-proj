@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes_app/dashboard.dart';
-import 'package:notes_app/ui/login_screen.dart';
-import 'package:notes_app/ui/welcome_page.dart';
+import 'package:notes_app/screens/dashboard.dart';
+import 'package:notes_app/screens/login_screen.dart';
+import 'package:notes_app/screens/welcome_page.dart';
 void main() {
   runApp(const MyApp());
 }
