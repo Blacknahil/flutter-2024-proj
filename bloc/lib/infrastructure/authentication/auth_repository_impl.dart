@@ -25,9 +25,9 @@ class AuthRepositoryImpl implements AuthenticationRepository {
     required this.userProfileBloc,
     required this.userRepository,
   });
-
-  final String baseUrl =
-      'http://localhost:5001/users'; // Replace with your actual API base URL
+  final String baseUrl = 'http://10.0.2.2:5001/users';
+  // final String baseUrl =
+  //     'http://localhost:5001/users'; // Replace with your actual API base URL
 
   @override
   Stream<AuthenticationStatus> get status async* {

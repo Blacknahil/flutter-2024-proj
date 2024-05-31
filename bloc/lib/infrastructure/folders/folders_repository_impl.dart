@@ -10,7 +10,8 @@ import 'dart:developer' as devtools;
 
 class FoldersRepositoryImpl implements FoldersRepository {
   final http.Client httpClient;
-  final String baseUrl = 'http://localhost:5001';
+  // final String baseUrl = 'http://localhost:5001';
+  final String baseUrl = 'http://10.0.2.2:5001';
 
   FoldersRepositoryImpl(this.httpClient);
 

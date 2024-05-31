@@ -43,7 +43,7 @@ class AppDrawer extends StatelessWidget {
                               radius: 18.0,
                               backgroundColor: Colors.white,
                               child: IconButton(
-                                icon: const Icon(Icons.person, size: 18.0),
+                                icon: const Icon(Icons.person, size: 10.0),
                                 onPressed: () {
                                   devtools.log("Edit profile has been clicked");
                                   router.go('/profile');
@@ -54,17 +54,17 @@ class AppDrawer extends StatelessWidget {
                             Text(
                               userstate.name,
                               style: const TextStyle(
-                                  color: Colors.white, fontSize: 14.0),
+                                  color: Colors.white, fontSize: 10.0),
                             ),
                             Text(
                               userstate.email,
                               style: const TextStyle(
-                                  color: Colors.white, fontSize: 10.0),
+                                  color: Colors.white, fontSize: 8.0),
                             ),
                             Text(
                               'You have ${userstate.folderIds.length} Folders',
                               style: const TextStyle(
-                                  color: Colors.white, fontSize: 10.0),
+                                  color: Colors.white, fontSize: 8.0),
                             ),
                           ],
                         ),

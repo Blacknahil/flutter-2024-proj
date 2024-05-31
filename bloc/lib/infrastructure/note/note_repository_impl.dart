@@ -10,7 +10,8 @@ import '../../domain/note/note_repository.dart';
 
 class NoteRepositoryImpl implements NoteRepository {
   final http.Client httpClient;
-  final String baseUrl = 'http://localhost:5001';
+  // final String baseUrl = 'http://localhost:5001';
+  final String baseUrl = 'http://10.0.2.2:5001';
 
   NoteRepositoryImpl(this.httpClient);
 

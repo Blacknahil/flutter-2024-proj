@@ -12,7 +12,8 @@ import '../../domain/user/user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
   final http.Client httpClient;
-  final String baseUrl = 'http://localhost:5001';
+  // final String baseUrl = 'http://localhost:5001';
+  final String baseUrl = 'http://10.0.2.2:5001';
 
   UserRepositoryImpl({required this.httpClient});
 

@@ -193,40 +193,6 @@ class SignUpAppForm extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // Container(
-                    //   height: 60,
-                    //   padding: const EdgeInsets.symmetric(
-                    //       horizontal: 30, vertical: 7),
-                    //   margin: const EdgeInsets.only(bottom: 30),
-                    //   decoration: BoxDecoration(
-                    //       border: Border.all(color: Colors.grey),
-                    //       borderRadius: BorderRadius.circular(20)),
-                    //   child: TextFormField(
-                    //     obscureText: !showPassword,
-                    //     validator: (value) {
-                    //       if (value != null) {
-                    //         if (value.isEmpty) {
-                    //           return 'Please confirm your password';
-                    //         }
-                    //       }
-                    //       return null;
-                    //     },
-                    //     decoration: InputDecoration(
-                    //       suffixIcon: InkWell(
-                    //         onTap: () {
-                    //           // // setState(() {
-                    //           // //   showPassword = !showPassword;
-                    //           // });
-                    //         },
-                    //         child: showPassword
-                    //             ? const Icon(Icons.visibility_off)
-                    //             : const Icon(Icons.visibility),
-                    //       ),
-                    //       border: InputBorder.none,
-                    //       hintText: 'Confirm password',
-                    //     ),
-                    //   ),
-                    // ),
                     TextButton(
                       child: const Text('Register'),
                       //add a background color
@@ -235,10 +201,6 @@ class SignUpAppForm extends StatelessWidget {
                         context
                             .read<SignUpFormBloc>()
                             .add(const RegisterWithEmailAndPasswordPressed());
-                        // devtools.log(state.lastName);
-                        // devtools.log(state.firstName.getOrCrash());
-                        // devtools.log(state.emailAddress.getOrCrash());
-                        // devtools.log(state.password.getOrCrash());
                       },
                     ),
                     const SizedBox(height: 16),

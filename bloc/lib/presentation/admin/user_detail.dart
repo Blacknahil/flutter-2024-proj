@@ -33,7 +33,7 @@ class UserDetailScreen extends StatelessWidget {
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.pop(context);
+                router.go("/adminDashboard");
               },
             ),
           ),
@@ -62,7 +62,7 @@ class UserDetailScreen extends StatelessWidget {
                           .read<UserProfileBloc>()
                           .add(BanUser(user.id, token));
                     }
-                    Navigator.pop(context);
+                    // Navigator.pop(context);
                   },
                   child: Text(user.banned ? "Unban User" : "Ban User"),
                 ),
