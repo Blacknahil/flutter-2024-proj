@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/admin/admin_home.dart';
+import 'package:notes_app/admin/presentation/screen/home_screen.dart';
+import 'package:notes_app/admin/presentation/screen/user_detail_screen.dart';
+import 'package:notes_app/admin/presentation/screen/user_list_screen.dart';
 import "dart:developer" as devtools;
 
 import 'package:notes_app/presentations/screens/log_in.dart';
@@ -64,9 +68,11 @@ class WelcomeScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => LogInScreen(),
-                        ),
+                        MaterialPageRoute(builder: (context) {
+                          return LogInScreen();
+                          // return AdminHomeScreen();
+                          // return UserListScreen();
+                        }),
                       );
                       devtools.log(
                           "Arrow button clicked continue to the next screen");

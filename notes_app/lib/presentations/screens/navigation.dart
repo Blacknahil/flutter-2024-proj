@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:developer' as devtools;
+import 'package:notes_app/presentations/screens/profile/profile.dart';
 
 // class NavigationScreen extends StatefulWidget {
 //   const NavigationScreen({super.key});
@@ -81,7 +83,18 @@ class AppDrawer extends StatelessWidget {
                             child: CircleAvatar(
                               radius: 18.0,
                               backgroundColor: Colors.white,
-                              child: Icon(Icons.person, size: 18.0),
+                              child: IconButton(
+                                icon: Icon(Icons.person, size: 18.0),
+                                onPressed: () {
+                                  devtools.log("Edit profile has been clicked");
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ProfilePage(),
+                                    ),
+                                  );
+                                },
+                              ),
                             ),
                           ),
                           Align(
@@ -145,6 +158,7 @@ class AppDrawer extends StatelessWidget {
               child: TextButton(
                 onPressed: () {
                   // Add your onPressed code here!
+                  devtools.log("Add folder name pop up");
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
