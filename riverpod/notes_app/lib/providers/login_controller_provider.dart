@@ -2,6 +2,7 @@ import 'package:notes_app/providers/state/login_states.dart';
 import 'package:notes_app/repository/auth_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+
 class LoginController extends StateNotifier<LoginState> {
   LoginController(this.ref) : super(const LoginStateInitial());
 
@@ -21,7 +22,9 @@ class LoginController extends StateNotifier<LoginState> {
   }
 }
 
+
 final loginControllerProvider =
     StateNotifierProvider<LoginController, LoginState>((ref) {
   return LoginController(ref);
 });
+

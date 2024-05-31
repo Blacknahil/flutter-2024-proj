@@ -1,20 +1,17 @@
-
-
 import 'package:notes_app/providers/login_controller_provider.dart';
 import 'package:notes_app/providers/state/login_states.dart';
-import 'package:notes_app/ui/welcome_page.dart';
-import 'package:notes_app/ui/login_screen.dart';
+import 'package:notes_app/screens/dashboard.dart';
+import 'package:notes_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-
 
 final routerProvider = Provider<GoRouter>((ref) {
   final router = RouterNotifier(ref);
   return GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: router,
-      redirect: router._redirectLogic,
+      //redirect: router._redirectLogic,
       routes: router._routes);
 });
 
@@ -49,9 +46,9 @@ class RouterNotifier extends ChangeNotifier {
           path: '/login',
         ),
         GoRoute(
-          name: 'welcome',
-          builder: (context, state) => const WelcomeScreen(),
+          name: 'home',
+          builder: (context, state) =>  Dashboard(),
           path: '/',
         ),
       ];
-} 
+}

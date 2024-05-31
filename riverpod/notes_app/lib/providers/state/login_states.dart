@@ -5,6 +5,8 @@ class LoginState extends Equatable {
 
   @override
   List<Object> get props => [];
+
+  get someMethodOrProperty => null;
 }
 
 class LoginStateInitial extends LoginState {

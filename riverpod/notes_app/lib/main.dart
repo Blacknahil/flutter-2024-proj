@@ -1,27 +1,27 @@
+
+
+import 'package:notes_app/providers/router_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notes_app/screens/dashboard.dart';
-import 'package:notes_app/screens/login_screen.dart';
-import 'package:notes_app/screens/welcome_page.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends ConsumerWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return ProviderScope(
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-        
-          primarySwatch: Colors.yellow
-        ),
-        home:   Dashboard(),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
+    return MaterialApp.router(
+      title: 'Auth Riverpod GoRouter',
+      theme: ThemeData(
+        primarySwatch: Colors.deepOrange,
       ),
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
     );
   }
 }
